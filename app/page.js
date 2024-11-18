@@ -1,5 +1,8 @@
 "use client";
 import { memo, useState, useEffect } from "react";
+import Modal from "./components/Modal";
+import AddressList from "./components/AddressList";
+import Form from "./components/Form";
 
 function Home() {
   // CRUD NAME, EMAIL, PHONE FIELDS
@@ -7,6 +10,8 @@ function Home() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [openCreateModal, setOpenCreateModal] = useState(false);
+  const [openUpdateModal, setOpenUpdateModal] = useState(false);
 
   const changeHandler = (e) => {
     switch (e.target.name) {
@@ -124,50 +129,77 @@ function Home() {
     getAddress();
   };
 
+  const handleCreateClose = () => {
+    setOpenCreateModal(false);
+  };
+
+  const handleCreateOpen = () => {
+    setOpenCreateModal(true);
+  };
+
+  const handleUpdateClose = () => {
+    setOpenUpdateModal(false);
+  };
+
+  const handleUpdateOpen = () => {
+    setOpenUpdateModal(true);
+  };
+
   useEffect(() => getAddress(), []);
-  console.log(address);
+  // console.log(showCreate);
   return (
     <main className="d-flex align-items-center justify-content-center flex-column py-5 px-3">
-      <div className="card text-center mb-3 p-3">
-        <h3 className="text-secondary title">Create New Address</h3>
-        <form onSubmit={createAddress}>
-          <input
-            type="text"
-            placeholder="Enter name.."
-            className="form-control mb-1"
-            name="name"
-            onChange={(e) => changeHandler(e)}
-          />
-          <input
-            type="email"
-            placeholder="Enter email.."
-            className="form-control mb-1"
-            name="email"
-            onChange={(e) => changeHandler(e)}
-          />
-          <input
-            type="tel"
-            placeholder="Enter phone number.."
-            className="form-control mb-1"
-            name="phone"
-            onChange={(e) => changeHandler(e)}
-          />
-          <input
-            type="submit"
-            value="Submit"
-            className="btn btn-secondary w-100"
-          />
-        </form>
-      </div>
+      <button className="btn btn-secondary" onClick={handleCreateOpen}>
+        Create New Address
+      </button>
+      {openCreateModal && (
+        <Modal isOpen={openCreateModal}>
+          <div className="text-center">
+            <h3 className="text-secondary title">Create New Address</h3>
+            <Form
+              onSubmit={createAddress}
+              handleClose={handleCreateClose}
+              submitHandler={createAddress}
+              changeHandler={changeHandler}
+            />
+          </div>
+        </Modal>
+      )}
+      <hr />
       {address && address.length > 0 && (
         <div className="card text-center p-3">
           <h3 className="text-secondary title">Addresses</h3>
           <ul>
             {address &&
               address.map((add) => (
-                <li key={add.id}>
-                  Name: {add.name} \n Email: {add.email} \n Phone: {add.phone}
-                </li>
+                <>
+                  <AddressList add={add} key={add.id}>
+                    <button
+                      className="btn btn-sm btn-primary me-1"
+                      onClick={handleUpdateOpen}
+                    >
+                      Edit
+                    </button>
+                  </AddressList>
+                  {openUpdateModal && (
+                    <Modal isOpen={openUpdateModal}>
+                      <div className="text-center">
+                        <h3 className="text-secondary title">
+                          Update New Address
+                        </h3>
+                        <Form
+                          onSubmit={updateAddress}
+                          handleClose={handleUpdateClose}
+                          submitHandler={updateAddress}
+                          changeHandler={changeHandler}
+                          name={add.name}
+                          email={add.email}
+                          phone={add.phone}
+                        />
+                      </div>
+                    </Modal>
+                  )}
+                </>
               ))}
           </ul>
         </div>

@@ -1,5 +1,3 @@
-# address-book-next-test
-
 # TO RUN THE PROJECT LOCALLY
 
 ```

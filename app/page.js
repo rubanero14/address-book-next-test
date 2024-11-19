@@ -124,8 +124,8 @@ function Home() {
   };
 
   const handleUpdateClose = () => {
-    setOpenUpdateModal(false);
     setForm(null);
+    setOpenUpdateModal(false);
   };
 
   const handleUpdateOpen = (add) => {
@@ -134,23 +134,20 @@ function Home() {
   };
 
   useEffect(() => getAddress(), []);
-  // console.log(showCreate);
   return (
     <main className="d-flex align-items-center justify-content-center flex-column py-5 px-3">
       <button className="btn btn-secondary" onClick={handleCreateOpen}>
-        <i class="bi bi-file-plus"></i> Create New Address
+        <i className="bi bi-file-plus"></i> Create New Address
       </button>
       {openCreateModal && (
         <Modal isOpen={openCreateModal}>
-          <div className="text-center">
-            <h3 className="text-secondary title">Create New Address</h3>
-            <Form
-              onSubmit={createAddress}
-              handleClose={handleCreateClose}
-              submitHandler={createAddress}
-              changeHandler={changeHandler}
-            />
-          </div>
+          <h3 className="text-secondary title">Create New Address</h3>
+          <Form
+            onSubmit={createAddress}
+            handleClose={handleCreateClose}
+            submitHandler={createAddress}
+            changeHandler={changeHandler}
+          />
         </Modal>
       )}
       <hr />
@@ -165,7 +162,7 @@ function Home() {
                     className="btn btn-sm btn-primary me-1"
                     onClick={() => handleUpdateOpen(add)}
                   >
-                    <i class="bi bi-pen"></i>{" "}
+                    <i className="bi bi-pen"></i>{" "}
                     <span className="d-none d-md-block">Edit</span>
                   </button>
                 </AddressList>
@@ -173,18 +170,16 @@ function Home() {
           </ul>
           {openUpdateModal && (
             <Modal isOpen={openUpdateModal}>
-              <div className="text-center">
-                <h3 className="text-secondary title">Update Address</h3>
-                <Form
-                  onSubmit={updateAddress}
-                  handleClose={handleUpdateClose}
-                  submitHandler={() => updateAddress(form.id)}
-                  changeHandler={changeHandler}
-                  name={form.name}
-                  email={form.email}
-                  phone={form.phone}
-                />
-              </div>
+              <h3 className="text-secondary title">Update Address</h3>
+              <Form
+                onSubmit={updateAddress}
+                handleClose={handleUpdateClose}
+                submitHandler={() => updateAddress(form.id)}
+                changeHandler={changeHandler}
+                name={form.name}
+                email={form.email}
+                phone={form.phone}
+              />
             </Modal>
           )}
         </div>

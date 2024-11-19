@@ -5,13 +5,13 @@ export default function AddressList({ add, deleteAdd, children }) {
         <div className="col-8">
           <div className="row">
             <div className="col-12 text-start ms-2 my-2">
-              <i class="bi bi-person-circle"></i> {add.name}
+              <i className="bi bi-person-circle"></i> {add.name}
             </div>
             <div className="col-12 text-start ms-2 mb-2">
-              <i class="bi bi-envelope-heart"></i> {add.email}
+              <i className="bi bi-envelope-heart"></i> {add.email}
             </div>
             <div className="col-12 text-start ms-2 mb-2">
-              <i class="bi bi-telephone"></i> {add.phone}
+              <i className="bi bi-telephone"></i> {add.phone}
             </div>
           </div>
         </div>
@@ -22,7 +22,7 @@ export default function AddressList({ add, deleteAdd, children }) {
               className="btn btn-sm btn-danger"
               onClick={() => deleteAdd(add.id)}
             >
-              <i class="bi bi-trash"></i>{" "}
+              <i className="bi bi-trash"></i>{" "}
               <span className="d-none d-md-block">Delete</span>
             </button>
           </div>

@@ -16,13 +16,14 @@ export default function AddressList({ add, deleteAdd, children }) {
           </div>
         </div>
         <div className="col-4">
-          <div className="d-flex align-items-center justify-content-center h-100">
+          <div className="d-flex m-auto align-items-center justify-content-center h-100">
             {children}
             <button
               className="btn btn-sm btn-danger"
               onClick={() => deleteAdd(add.id)}
             >
-              <i class="bi bi-trash"></i> Delete
+              <i class="bi bi-trash"></i>{" "}
+              <span className="d-none d-md-block">Delete</span>
             </button>
           </div>
         </div>

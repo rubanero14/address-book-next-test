@@ -138,7 +138,7 @@ function Home() {
   return (
     <main className="d-flex align-items-center justify-content-center flex-column py-5 px-3">
       <button className="btn btn-secondary" onClick={handleCreateOpen}>
-        Create New Address
+        <i class="bi bi-file-plus"></i> Create New Address
       </button>
       {openCreateModal && (
         <Modal isOpen={openCreateModal}>
@@ -165,7 +165,7 @@ function Home() {
                     className="btn btn-sm btn-primary me-1"
                     onClick={() => handleUpdateOpen(add)}
                   >
-                    Edit
+                    <i class="bi bi-pen"></i> Edit
                   </button>
                 </AddressList>
               ))}

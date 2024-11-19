@@ -73,7 +73,7 @@ export default function Form({
       )}
       <input
         type="submit"
-        value="Submit"
+        value={name ? "Update" : "Submit"}
         className="btn btn-success w-100 mb-1"
       />
       <button

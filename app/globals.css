@@ -33,3 +33,10 @@ body {
 .title {
   font-size: 20px;
 }
+
+.address-list {
+  margin-bottom: 1rem;
+}
+.address-list:last-child {
+  margin-bottom: 0;
+}

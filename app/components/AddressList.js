@@ -1,8 +1,6 @@
-import { Children } from "react";
-
-export default function AddressList({ add, children }) {
+export default function AddressList({ add, deleteAdd, children }) {
   return (
-    <li className="card">
+    <li className="card" key={add.id}>
       <div className="row">
         <div className="col-8">
           <div className="row">
@@ -14,7 +12,12 @@ export default function AddressList({ add, children }) {
         <div className="col-4">
           <div className="d-flex align-items-center justify-content-center h-100">
             {children}
-            <button className="btn btn-sm btn-danger">Delete</button>
+            <button
+              className="btn btn-sm btn-danger"
+              onClick={() => deleteAdd(add.id)}
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>

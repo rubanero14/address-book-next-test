@@ -12,6 +12,7 @@ function Home() {
   const [phone, setPhone] = useState("");
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
+  const [form, setForm] = useState(null);
 
   const changeHandler = (e) => {
     switch (e.target.name) {
@@ -30,8 +31,7 @@ function Home() {
   };
 
   // Create
-  const createAddress = (e) => {
-    e.preventDefault();
+  const createAddress = () => {
     if (address) {
       setAddress([
         ...address,
@@ -75,42 +75,31 @@ function Home() {
         ])
       );
     }
-    console.log(address);
 
     getAddress();
   };
 
   // Read
   const getAddress = () => {
-    const data = localStorage.getItem("address-book");
-    if (data !== undefined || data.length > 0) {
+    let data;
+    if (localStorage.getItem("address-book")) {
+      data = localStorage.getItem("address-book");
       setAddress([...JSON.parse(data)]);
+    } else {
+      localStorage.setItem("address-book", JSON.stringify([]));
+      setAddress([]);
     }
   };
 
   // Update
   const updateAddress = (id) => {
-    e.preventDefault();
     address.map((add) => {
       if (id === add.id) {
-        setAddress(
-          ...(prev) => [
-            ...prev,
-            {
-              [add.name]: name,
-              [add.email]: email,
-              [add.phone]: phone,
-            },
-          ]
-        );
-        localStorage.setItem(
-          "address-book",
-          JSON.stringify(...address, {
-            [add.name]: name,
-            [add.email]: email,
-            [add.phone]: phone,
-          })
-        );
+        console.log(id === add.id);
+        add.name = name;
+        add.email = email;
+        add.phone = phone;
+        localStorage.setItem("address-book", JSON.stringify([...address]));
       }
     });
 
@@ -119,13 +108,10 @@ function Home() {
 
   // Delete
   const deleteAddress = (id) => {
-    e.preventDefault();
-    setAddress(...address.filter((add) => add.id !== id));
-
-    localStorage.setItem(
-      "address-book",
-      JSON.stringify(...address.filter((add) => add.id !== id))
-    );
+    console.log(id);
+    const newAdd = address.filter((add) => add.id !== id);
+    setAddress(newAdd);
+    localStorage.setItem("address-book", JSON.stringify(newAdd));
     getAddress();
   };
 
@@ -139,9 +125,11 @@ function Home() {
 
   const handleUpdateClose = () => {
     setOpenUpdateModal(false);
+    setForm(null);
   };
 
-  const handleUpdateOpen = () => {
+  const handleUpdateOpen = (add) => {
+    setForm(add);
     setOpenUpdateModal(true);
   };
 
@@ -166,43 +154,41 @@ function Home() {
         </Modal>
       )}
       <hr />
-      {address && address.length > 0 && (
+      {address && address.length > 0 ? (
         <div className="card text-center p-3">
           <h3 className="text-secondary title">Addresses</h3>
           <ul>
             {address &&
               address.map((add) => (
-                <>
-                  <AddressList add={add} key={add.id}>
-                    <button
-                      className="btn btn-sm btn-primary me-1"
-                      onClick={handleUpdateOpen}
-                    >
-                      Edit
-                    </button>
-                  </AddressList>
-                  {openUpdateModal && (
-                    <Modal isOpen={openUpdateModal}>
-                      <div className="text-center">
-                        <h3 className="text-secondary title">
-                          Update New Address
-                        </h3>
-                        <Form
-                          onSubmit={updateAddress}
-                          handleClose={handleUpdateClose}
-                          submitHandler={updateAddress}
-                          changeHandler={changeHandler}
-                          name={add.name}
-                          email={add.email}
-                          phone={add.phone}
-                        />
-                      </div>
-                    </Modal>
-                  )}
-                </>
+                <AddressList add={add} key={add.id} deleteAdd={deleteAddress}>
+                  <button
+                    className="btn btn-sm btn-primary me-1"
+                    onClick={() => handleUpdateOpen(add)}
+                  >
+                    Edit
+                  </button>
+                </AddressList>
               ))}
           </ul>
+          {openUpdateModal && (
+            <Modal isOpen={openUpdateModal}>
+              <div className="text-center">
+                <h3 className="text-secondary title">Update New Address</h3>
+                <Form
+                  onSubmit={updateAddress}
+                  handleClose={handleUpdateClose}
+                  submitHandler={() => updateAddress(form.id)}
+                  changeHandler={changeHandler}
+                  name={form.name}
+                  email={form.email}
+                  phone={form.phone}
+                />
+              </div>
+            </Modal>
+          )}
         </div>
+      ) : (
+        <h1 className="text-center">Nothing here. Please create new address</h1>
       )}
     </main>
   );

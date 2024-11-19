@@ -13,7 +13,7 @@ export default function Modal({ isOpen, onClose, children }) {
       }}
     >
       <div
-        className="modal-dialog bg-light m-auto"
+        className="modal-dialog bg-light m-auto p-3"
         style={{
           padding: "2%",
           border: "2px solid #000",

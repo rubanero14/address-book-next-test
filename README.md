@@ -4,7 +4,7 @@
 
 ```
 git clone https://github.com/rubanero14/address-book-next-test.git
-cd /countries-data-next-app/
+cd /address-book-next-test/
 npm install
 npm run dev
 ```

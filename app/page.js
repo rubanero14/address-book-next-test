@@ -174,7 +174,7 @@ function Home() {
           {openUpdateModal && (
             <Modal isOpen={openUpdateModal}>
               <div className="text-center">
-                <h3 className="text-secondary title">Update New Address</h3>
+                <h3 className="text-secondary title">Update Address</h3>
                 <Form
                   onSubmit={updateAddress}
                   handleClose={handleUpdateClose}

@@ -1,6 +1,6 @@
 export default function AddressList({ add, deleteAdd, children }) {
   return (
-    <li className="card" key={add.id}>
+    <li className="card mb-2" key={add.id}>
       <div className="row">
         <div className="col-8">
           <div className="row">

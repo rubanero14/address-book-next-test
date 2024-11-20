@@ -81,7 +81,7 @@ export default function Form({
       )}
       <input
         type="submit"
-        value={name ? "Update" : "Submit"}
+        value={name ? "Update" : "Create"}
         className="btn btn-success w-100 mb-1"
       />
       <button

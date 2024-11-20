@@ -13,12 +13,10 @@ export default function Modal({ isOpen, onClose, children }) {
       }}
     >
       <div
-        className="modal-dialog bg-light m-auto p-3 text-center"
+        className="modal-dialog bg-light m-auto p-3 text-center card p-3"
         style={{
-          padding: "2%",
-          border: "2px solid #000",
+
           borderRadius: "10px",
-          boxShadow: "2px solid black",
         }}
       >
         <div className="modal-content">{children}</div>

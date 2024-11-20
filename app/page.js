@@ -32,48 +32,21 @@ function Home() {
 
   // Create
   const createAddress = () => {
+    const newAddress = {
+      id: new Date(),
+      name: name,
+      email: email,
+      phone: phone,
+    };
     if (address) {
-      setAddress([
-        ...address,
-        {
-          id: new Date(),
-          name: name,
-          email: email,
-          phone: phone,
-        },
-      ]);
+      setAddress([...address, newAddress]);
       localStorage.setItem(
         "address-book",
-        JSON.stringify([
-          ...address,
-          {
-            id: new Date(),
-            name: name,
-            email: email,
-            phone: phone,
-          },
-        ])
+        JSON.stringify([...address, newAddress])
       );
     } else {
-      setAddress([
-        {
-          id: new Date(),
-          name: name,
-          email: email,
-          phone: phone,
-        },
-      ]);
-      localStorage.setItem(
-        "address-book",
-        JSON.stringify([
-          {
-            id: new Date(),
-            name: name,
-            email: email,
-            phone: phone,
-          },
-        ])
-      );
+      setAddress([newAddress]);
+      localStorage.setItem("address-book", JSON.stringify([newAddress]));
     }
 
     getAddress();
@@ -95,7 +68,6 @@ function Home() {
   const updateAddress = (id) => {
     address.map((add) => {
       if (id === add.id) {
-        console.log(id === add.id);
         add.name = name;
         add.email = email;
         add.phone = phone;
@@ -108,7 +80,6 @@ function Home() {
 
   // Delete
   const deleteAddress = (id) => {
-    console.log(id);
     const newAdd = address.filter((add) => add.id !== id);
     setAddress(newAdd);
     localStorage.setItem("address-book", JSON.stringify(newAdd));

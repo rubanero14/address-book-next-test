@@ -36,15 +36,6 @@ export default function Form({
     if (formValidated) {
       setError(false);
       submitHandler();
-      if (name !== "") {
-        setFormData({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-        });
-      } else {
-        setFormData({ name: "", email: "", phone: "" });
-      }
       handleClose();
     } else {
       setError(true);

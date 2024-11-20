@@ -6,13 +6,6 @@
   --foreground: var(--bs-primary-text-emphasis);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--bs-purple);
-    --foreground: #ededed;
-  }
-}
-
 html,
 body {
   height: 100%;
@@ -39,4 +32,11 @@ body {
 }
 .address-list:last-child {
   margin-bottom: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--bs-purple);
+    --foreground: #ededed;
+  }
 }

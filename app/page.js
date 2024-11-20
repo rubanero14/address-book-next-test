@@ -133,7 +133,7 @@ function Home() {
                     className="btn btn-sm btn-primary me-1 d-flex"
                     onClick={() => handleUpdateOpen(add)}
                   >
-                    <i className="bi bi-pen me-1"></i>
+                    <i className="bi bi-pen me-md-1"></i>
                     <span className="d-none d-md-block">Edit</span>
                   </button>
                 </AddressList>

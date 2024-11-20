@@ -22,7 +22,7 @@ export default function AddressList({ add, deleteAdd, children }) {
               className="btn btn-sm btn-danger d-flex"
               onClick={() => deleteAdd(add.id)}
             >
-              <i className="bi bi-trash me-1"></i>
+              <i className="bi bi-trash me-md-1"></i>
               <span className="d-none d-md-block">Delete</span>
             </button>
           </div>

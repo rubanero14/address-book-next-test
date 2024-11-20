@@ -130,10 +130,10 @@ function Home() {
               address.map((add) => (
                 <AddressList add={add} key={add.id} deleteAdd={deleteAddress}>
                   <button
-                    className="btn btn-sm btn-primary me-1"
+                    className="btn btn-sm btn-primary me-1 d-flex"
                     onClick={() => handleUpdateOpen(add)}
                   >
-                    <i className="bi bi-pen"></i>{" "}
+                    <i className="bi bi-pen me-1"></i>
                     <span className="d-none d-md-block">Edit</span>
                   </button>
                 </AddressList>

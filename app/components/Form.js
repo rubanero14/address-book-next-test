@@ -7,11 +7,12 @@ export default function Form({
   submitHandler,
   changeHandler,
   handleClose,
+  actionType,
 }) {
   const [formData, setFormData] = useState({
-    name,
-    email,
-    phone,
+    name: actionType === "update" ? name : "",
+    email: actionType === "update" ? email : "",
+    phone: actionType === "update" ? phone : "",
   });
   const [error, setError] = useState(false);
 
@@ -36,6 +37,11 @@ export default function Form({
     if (formValidated) {
       setError(false);
       submitHandler();
+      setFormData({
+        name: actionType === "update" ? name : "",
+        email: actionType === "update" ? email : "",
+        phone: actionType === "update" ? phone : "",
+      });
       handleClose();
     } else {
       setError(true);
@@ -72,7 +78,7 @@ export default function Form({
       )}
       <input
         type="submit"
-        value={name ? "Update" : "Create"}
+        value={actionType === "update" ? "Update" : "Create"}
         className="btn btn-success w-100 mb-1"
       />
       <button

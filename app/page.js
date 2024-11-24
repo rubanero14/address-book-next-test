@@ -71,9 +71,10 @@ function Home() {
         add.name = name;
         add.email = email;
         add.phone = phone;
-        localStorage.setItem("address-book", JSON.stringify([...address]));
       }
     });
+    console.log(address);
+    localStorage.setItem("address-book", JSON.stringify([...address]));
 
     getAddress();
   };
@@ -118,6 +119,7 @@ function Home() {
             handleClose={handleCreateClose}
             submitHandler={createAddress}
             changeHandler={changeHandler}
+            actionType="create"
           />
         </Modal>
       )}
@@ -150,6 +152,7 @@ function Home() {
                 name={form.name}
                 email={form.email}
                 phone={form.phone}
+                actionType="update"
               />
             </Modal>
           )}
